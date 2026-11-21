@@ -1,5 +1,5 @@
-// aiconsole-unlock patches Synology AI Console's activation gate so the
-// package works without a linked Synology account.
+// synology-aiconsole-unlock patches Synology AI Console's activation gate so
+// the package works without a linked Synology account.
 //
 // The gate lives in libsynoai.so, symbol synoai::activation::GetActivation(),
 // at the single instruction that stores the `activated` flag into the result
@@ -80,14 +80,14 @@ func main() {
 		noChown = flag.Bool("no-chown", false, "do not change file ownership")
 	)
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, `aiconsole-unlock - unlock Synology AI Console without a Synology account
+		fmt.Fprintf(os.Stderr, `synology-aiconsole-unlock - unlock Synology AI Console without a Synology account
 
 Usage:
-  aiconsole-unlock                  dry run against %s
-  aiconsole-unlock -status          report patch state only
-  aiconsole-unlock -apply           write the patch
-  aiconsole-unlock -revert          restore from the .orig backup
-  aiconsole-unlock -f PATH -apply   patch a library at a custom path
+  synology-aiconsole-unlock                  dry run against %s
+  synology-aiconsole-unlock -status          report patch state only
+  synology-aiconsole-unlock -apply           write the patch
+  synology-aiconsole-unlock -revert          restore from the .orig backup
+  synology-aiconsole-unlock -f PATH -apply   patch a library at a custom path
 
 Flags:
 `, defaultLib)
@@ -240,7 +240,7 @@ func report(path string) {
 
 func writeAtomic(path string, data []byte, mode os.FileMode) error {
 	dir := filepath.Dir(path)
-	tmp, err := os.CreateTemp(dir, ".aiconsole-unlock-*")
+	tmp, err := os.CreateTemp(dir, ".synology-aiconsole-unlock-*")
 	if err != nil {
 		return err
 	}

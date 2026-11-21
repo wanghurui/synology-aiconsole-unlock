@@ -35,7 +35,7 @@ jobs:
           mkdir -p build
           build() {
             os=$1; arch=$2; suffix=$3; goarm=$4
-            out="build/aiconsole-unlock-linux-$suffix"
+            out="build/synology-aiconsole-unlock-${os}-${suffix}"
             echo "building $out"
             if [ -n "$goarm" ]; then
               CGO_ENABLED=0 GOOS="$os" GOARCH="$arch" GOARM="$goarm" \
@@ -55,7 +55,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: aiconsole-unlock
+          name: synology-aiconsole-unlock
           path: build/*
 
   release:
@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: aiconsole-unlock
+          name: synology-aiconsole-unlock
           path: build
 
       - uses: softprops/action-gh-release@v2

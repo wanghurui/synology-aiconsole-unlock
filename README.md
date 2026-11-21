@@ -1,4 +1,4 @@
-# aiconsole-unlock
+# synology-aiconsole-unlock
 
 Patch Synology AI Console so it works **without linking a Synology account**.
 
@@ -64,8 +64,8 @@ Pick the binary that matches your NAS, copy it over, run it once.
 
 ```sh
 # on the NAS, as root
-sudo ./aiconsole-unlock            # dry run: shows what it would change
-sudo ./aiconsole-unlock -apply     # write the patch
+sudo ./synology-aiconsole-unlock            # dry run: shows what it would change
+sudo ./synology-aiconsole-unlock -apply     # write the patch
 ```
 
 Expected output:
@@ -100,16 +100,16 @@ directly.
 
 | file | for |
 | --- | --- |
-| `aiconsole-unlock-linux-amd64` | x86-64 NAS (DS918+, DS1621+, DS923+, most plus models) |
-| `aiconsole-unlock-linux-arm64` | ARMv8 (DS223, DS423, RT6600ax, newer value models) |
-| `aiconsole-unlock-linux-armv7` | ARMv7 (DS218, DS418, DS118, older value models) |
+| `synology-aiconsole-unlock-linux-amd64` | x86-64 NAS (DS918+, DS1621+, DS923+, most plus models) |
+| `synology-aiconsole-unlock-linux-arm64` | ARMv8 (DS223, DS423, RT6600ax, newer value models) |
+| `synology-aiconsole-unlock-linux-armv7` | ARMv7 (DS218, DS418, DS118, older value models) |
 
 Check yours with `uname -m`: `x86_64`, `aarch64`, or `armv7l`.
 
 ### Build from source
 
 ```sh
-GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o aiconsole-unlock
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o synology-aiconsole-unlock
 ```
 
 No dependencies outside the standard library.
@@ -141,7 +141,7 @@ Synology package upgrades replace `libsynoai.so`, which removes the patch. Just
 run it again:
 
 ```sh
-sudo aiconsole-unlock -apply
+sudo synology-aiconsole-unlock -apply
 ```
 
 If the offset moved but the function is otherwise the same, the scanner still
@@ -154,7 +154,7 @@ A ready-made wrapper for this is in [scripts/post-upgrade.sh](scripts/post-upgra
 ## Uninstall
 
 ```sh
-sudo aiconsole-unlock -revert     # restore the original library
+sudo synology-aiconsole-unlock -revert     # restore the original library
 ```
 
 or simply reinstall the AIConsole package from Package Center.

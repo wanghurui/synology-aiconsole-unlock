@@ -5,25 +5,25 @@
 # This wrapper runs the unlocker idempotently and records the outcome.
 #
 # Install:
-#   sudo cp aiconsole-unlock /usr/local/bin/aiconsole-unlock
-#   sudo chmod 755 /usr/local/bin/aiconsole-unlock
-#   sudo cp post-upgrade.sh /usr/local/bin/aiconsole-unlock-reapply
-#   sudo chmod 755 /usr/local/bin/aiconsole-unlock-reapply
+#   sudo cp synology-aiconsole-unlock /usr/local/bin/synology-aiconsole-unlock
+#   sudo chmod 755 /usr/local/bin/synology-aiconsole-unlock
+#   sudo cp post-upgrade.sh /usr/local/bin/synology-aiconsole-unlock-reapply
+#   sudo chmod 755 /usr/local/bin/synology-aiconsole-unlock-reapply
 #
 # Then either run it by hand after every upgrade, or wire it into a boot task:
 #   Control Panel > Task Scheduler > Create > Triggered Task
 #   > Event: Boot-up > User: root
-#   > Command: /usr/local/bin/aiconsole-unlock-reapply
+#   > Command: /usr/local/bin/synology-aiconsole-unlock-reapply
 #
 # A boot task is the simplest reliable hook: DSM runs it after package services
 # are already up, so the library is in place by then.
 
-UNLOCK="${UNLOCK:-/usr/local/bin/aiconsole-unlock}"
-LOG="${LOG:-/var/log/aiconsole-unlock.log}"
+UNLOCK="${UNLOCK:-/usr/local/bin/synology-aiconsole-unlock}"
+LOG="${LOG:-/var/log/synology-aiconsole-unlock.log}"
 
 if [ ! -x "$UNLOCK" ]; then
     echo "error: $UNLOCK not found or not executable" >&2
-    echo "       copy the aiconsole-unlock binary there first" >&2
+    echo "       copy the synology-aiconsole-unlock binary there first" >&2
     exit 1
 fi
 
