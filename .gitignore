@@ -1,0 +1,18 @@
+# build output
+build/
+dist/
+
+# local test scratch
+*.test
+*.out
+
+# editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# don't commit a copy of a Synology library or the backup
+libsynoai.so
+libsynoai.so.orig
+*.patched.so

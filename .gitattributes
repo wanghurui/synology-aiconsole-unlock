@@ -1,0 +1,16 @@
+# Everything in this repo is consumed on Linux, so keep LF on disk.
+* text=auto eol=lf
+
+# Shell scripts must be LF or they fail with "bad interpreter".
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Source
+*.go text eol=lf
+*.md text eol=lf
+go.mod text eol=lf
+go.sum text eol=lf
+LICENSE text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
